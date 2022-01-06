@@ -22,10 +22,8 @@ export const getToken = async (email, password) => {
       email,
       password,
     });
-    let data = {
-      status: res.status,
-      message: res.data,
-    };
+    console.log(res.data);
+    let data = res.data.token;
     return data;
   } catch (err) {
     let data = {
@@ -35,5 +33,3 @@ export const getToken = async (email, password) => {
     return data;
   }
 };
-
-//result o response

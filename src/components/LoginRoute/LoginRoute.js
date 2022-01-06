@@ -6,7 +6,6 @@ const LoginRoute = ({ component: Component, ...rest }) => {
   const { user } = useContext(Context);
 
   useEffect(() => {
-    //Ver que trae
     console.log(user);
   }, [user]);
 

@@ -11,10 +11,7 @@ export const Notification = () => {
   const error = <button type="button" />;
 
   useEffect(() => {
-    //Se puede usar sin return
-    return () => {
-      setType(notification.type);
-    };
+    setType(notification.type);
   }, [notification.type]);
 
   if (notification.message === "") {
