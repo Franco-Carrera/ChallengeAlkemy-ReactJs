@@ -1,18 +1,19 @@
 import "./Navbar.css";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClosedCaptioning } from "@fortawesome/free-solid-svg-icons";
+import Context from "../../context/HeroContext";
 
 const logoutIcon = <FontAwesomeIcon icon={faClosedCaptioning} />;
 
-const NavBar = ({ setUser }) => {
-  const logout = () => {
-    localStorage.clear();
-    setUser(false);
-  };
+const NavBar = () => {
+  const { user, logout } = useContext(Context);
+
+  useEffect(() => {}, [user]);
+
   return (
     <Navbar variant="dark" expand="lg">
       <Container>
@@ -22,10 +23,12 @@ const NavBar = ({ setUser }) => {
             <Nav.Link href="#home">My Team</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <div className="logOut" onClick={logout}>
-          <label>Log Out</label>
-          <button className="btn__logout">{logoutIcon}</button>
-        </div>
+        {user ? (
+          <div className="logOut" onClick={logout}>
+            <label>Log Out</label>
+            <button className="btn__logout">{logoutIcon}</button>
+          </div>
+        ) : null}
       </Container>
     </Navbar>
   );
