@@ -1,12 +1,26 @@
-import { useContext } from "react";
+import { useState /**UseContext */ } from "react";
 import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
-import Context from "../../context/HeroContext";
+//import Context from "../../context/HeroContext";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import axios from "axios";
 
 const Search = () => {
-  const { search } = useContext(Context);
+  //const { search } = useContext(Context);
+
+  const [heroes, setHeroes] = useState([]);
+  const [attribute, setAttribute] = useState([]);
+
+  const searchSuperHeros = async () => {
+    const response = await axios.get(`http://localhost:5000/${attribute}`);
+    if (response && response.data && response.data.results) {
+      const newHeros = [...heroes, ...response.data.results].reverse();
+      setHeroes(newHeros);
+    }
+  };
+
+  console.log(heroes);
 
   return (
     <Formik
@@ -22,7 +36,8 @@ const Search = () => {
         return err;
       }}
       onSubmit={(values) => {
-        search(values.name);
+        setAttribute(values.name);
+        searchSuperHeros();
       }}
     >
       {({ errors }) => (
