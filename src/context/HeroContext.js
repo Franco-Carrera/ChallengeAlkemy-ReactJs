@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { searchHero, getToken } from "../utilities/apiHero";
+import axios from "axios";
 
 const Context = React.createContext();
 
@@ -7,8 +7,8 @@ export const HeroContext = ({ children }) => {
   //Promesa setea heroes en search
   const [heroes, setHeroes] = useState([]);
 
-  //Setea user true or false en login logout
-  const [user, setUser] = useState(false);
+  //Setea estados del team
+  const [team, setTeam] = useState([]);
 
   //Setea message en Notification en login logout
   const [message, setMessage] = useState("");
@@ -16,34 +16,31 @@ export const HeroContext = ({ children }) => {
   //Setea tipo de notification check || error
   const [type, setType] = useState("");
 
-  const login = (values) => {
-    setNotification("spinner", "Processing", 2000);
-    const { email, password } = values;
+  const token = localStorage.getItem("token");
 
-    getToken(email, password)
-      .then((result) => {
-        localStorage.setItem("token", result);
-        console.log(result);
-        setUser(true);
-        setNotification();
-      })
-      .catch((err) => {
-        alert(err);
+  const getToken = async (email, password) => {
+    try {
+      const res = await axios.post(`http://challenge-react.alkemy.org/`, {
+        email,
+        password,
       });
+      let data = res.data.token;
+      return data;
+    } catch (err) {
+      let data = err.response.data;
+
+      return data;
+    }
   };
 
-  const logout = () => {
-    setNotification("Finish", "See you later", 3000);
-    localStorage.clear();
-    setTimeout(() => {
-      setUser(false);
-    }, 500);
-  };
-
+  //Funcion que busca heroes y setea su estado
   const search = (name) => {
-    searchHero(name)
-      .then((result) => {
-        setHeroes(result);
+    axios
+      .get(`http://localhost:5000/${name}`)
+      .then((response) => {
+        console.log(response.data.results);
+        const newHeroes = [...response.data.results, ...heroes];
+        setHeroes(newHeroes);
       })
       .catch((err) => {
         console.log(err);
@@ -63,11 +60,12 @@ export const HeroContext = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        login,
-        logout,
+        token,
+        getToken,
         search,
-        user,
         heroes,
+        team,
+        setTeam,
         notification: {
           message,
           type,

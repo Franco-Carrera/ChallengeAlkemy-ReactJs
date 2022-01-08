@@ -1,0 +1,11 @@
+.progress {
+  margin: 0.5rem 0;
+  height: 1.5rem;
+}
+
+.progress-bar {
+  text-align: left;
+  font-size: 1.2rem;
+  font-style: italic;
+  padding-left: 0.5rem;
+}
