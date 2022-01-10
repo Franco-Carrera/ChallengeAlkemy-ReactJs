@@ -1,14 +1,19 @@
 import React, { useContext, useState, useEffect } from "react";
-////FontAwesomeIcon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faEraser } from "@fortawesome/free-solid-svg-icons";
 import NotificationContext from "../../context/HeroContext";
 import "./Notification.css";
+
+const buttonCheck = <FontAwesomeIcon icon={faCheck} />;
+const buttonError = <FontAwesomeIcon icon={faEraser} />;
 
 export const Notification = () => {
   const { notification } = useContext(NotificationContext);
   const [type, setType] = useState("");
   const spinner = <div className="spinner-border text-primary" role="status" />;
-  const check = <button type="button" />;
-  const error = <button type="button" />;
+  const check = <button type="button">{buttonCheck}</button>;
+  const error = <button type="button">{buttonError}</button>;
 
   useEffect(() => {
     setType(notification.type);
@@ -25,7 +30,7 @@ export const Notification = () => {
         role="alert"
       >
         <h3>
-          {type === "spiner"
+          {type === "spinner"
             ? spinner
             : type === "check"
             ? check

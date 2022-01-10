@@ -18,7 +18,7 @@ function App() {
         <Router history={history}>
           <Switch>
             <Route exact path="/" component={HeroesContainer} />
-            <Route exact path="/team:/path" component={HeroesContainer} />
+            <Route path="/team/:path" component={HeroesContainer} />
             <Route exact path="/login" component={Login} />
           </Switch>
         </Router>
