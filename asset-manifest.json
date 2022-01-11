@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ChallengeAlkemy-ReactJs/static/css/main.a02cb684.css",
+    "main.js": "/ChallengeAlkemy-ReactJs/static/js/main.bf63e36a.js",
+    "static/js/787.feb3c4fa.chunk.js": "/ChallengeAlkemy-ReactJs/static/js/787.feb3c4fa.chunk.js",
+    "index.html": "/ChallengeAlkemy-ReactJs/index.html",
+    "main.a02cb684.css.map": "/ChallengeAlkemy-ReactJs/static/css/main.a02cb684.css.map",
+    "main.bf63e36a.js.map": "/ChallengeAlkemy-ReactJs/static/js/main.bf63e36a.js.map",
+    "787.feb3c4fa.chunk.js.map": "/ChallengeAlkemy-ReactJs/static/js/787.feb3c4fa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a02cb684.css",
+    "static/js/main.bf63e36a.js"
+  ]
+}
