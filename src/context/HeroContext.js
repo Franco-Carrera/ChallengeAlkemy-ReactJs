@@ -56,7 +56,6 @@ export const HeroContext = ({ children }) => {
     axios
       .get(`http://localhost:5000/${name}`)
       .then((response) => {
-        console.log(response.data.results);
         if (response.data.response === "success") {
           let newHeroes = discardHeroes([...response.data.results]);
           setHeroes(newHeroes);

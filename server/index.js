@@ -3,10 +3,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
-var app = express();
-//let o const
-
-app.set("port", process.env.PORT || 3000);
+let app = express();
 
 app.use(cors());
 app.use(morgan("dev"));
@@ -18,8 +15,14 @@ app.get("/hulk", (req, res) => {
 });
 
 //
-app.listen(app.get("port"), () => {
-  console.log(`Server running on Port ${app.get("port")}`);
+const server = app.listen(process.env.PORT, () => {
+  const message = `| Server listen on port ${process.env.PORT} |`;
+  const link = `| - http://localhost:${process.env.PORT}    |`;
+  console.log("-".repeat(message.length));
+  console.log(message);
+  console.log(link);
+  console.log("-".repeat(message.length));
 });
+server.on("error", (error) => console.log(`Error server: ${error}`));
 
 export default app;
