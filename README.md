@@ -34,7 +34,7 @@
 
 ### 8. El ultimo paso, entrando en la raíz del proyecto por consola, ejecutar el comando [npm start] para iniciar la app. Luego, desde el directorio server, volver a ejecutar [npm start] para iniciar el servidor.
 
-### \*\*\*Nota: para obtener tu API_KEY, tendrás que ingresar al siguiente [Link(https://campus.alkemy.org/challenges)]
+### \*\*\*Nota: para obtener tu API_KEY, tendrás que ingresar al siguiente [Link(https://superheroapi.com/#intro]
 
 # Autor :flower_playing_cards:
 
